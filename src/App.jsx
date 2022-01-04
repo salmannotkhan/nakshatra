@@ -69,27 +69,37 @@ function App() {
         }
     };
     return (
-        <div className="input-box">
-            <form onSubmit={handleSubmit}>
-                <select
-                    name="planet"
-                    value={state.planet}
-                    onChange={(e) =>
-                        dispatch({ type: e.target.name, value: e.target.value })
-                    }>
-                    <option value="Saturn">Saturn</option>
-                    <option value="Jupiter">Jupiter</option>
-                    <option value="Mars">Mars</option>
-                    <option value="Sun">Sun</option>
-                    <option value="Venus">Venus</option>
-                    <option value="Mercury">Mercury</option>
-                    <option value="Moon">Moon</option>
-                    <option value="Ascendant">Ascendant</option>
-                </select>
-                <div className="degree-minutes">
+        <>
+            <h1>
+                <img src="" alt="" srcSet="" /> Nakshatra
+            </h1>
+            <div className="input-box">
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="planet">Planet</label>
+                    <select
+                        name="planet"
+                        id="planet"
+                        value={state.planet}
+                        onChange={(e) =>
+                            dispatch({
+                                type: e.target.name,
+                                value: e.target.value,
+                            })
+                        }>
+                        <option value="Saturn">Saturn</option>
+                        <option value="Jupiter">Jupiter</option>
+                        <option value="Mars">Mars</option>
+                        <option value="Sun">Sun</option>
+                        <option value="Venus">Venus</option>
+                        <option value="Mercury">Mercury</option>
+                        <option value="Moon">Moon</option>
+                        <option value="Ascendant">Ascendant</option>
+                    </select>
+                    <label htmlFor="degree">Degree</label>
                     <input
                         type="number"
                         name="degree"
+                        id="degree"
                         value={state.degree}
                         min={0}
                         max={30}
@@ -100,10 +110,11 @@ function App() {
                             })
                         }
                     />
-                    Degree
+                    <label htmlFor="minutes">Minutes</label>
                     <input
                         type="number"
                         name="minutes"
+                        id="minutes"
                         value={state.minutes}
                         min={0}
                         max={60}
@@ -114,35 +125,43 @@ function App() {
                             })
                         }
                     />
-                    Minutes
-                </div>
-                <select
-                    name="zodiac"
-                    value={state.zodiac}
-                    onChange={(e) =>
-                        dispatch({ type: e.target.name, value: e.target.value })
-                    }>
-                    <option value="Ar">Aries</option>
-                    <option value="Ta">Taurus</option>
-                    <option value="Ge">Gemini</option>
-                    <option value="Ca">Cancer</option>
-                    <option value="Le">Leo</option>
-                    <option value="Vi">Virgo</option>
-                    <option value="Li">Libra</option>
-                    <option value="Sc">Scorpio</option>
-                    <option value="Sa">Sagittarius</option>
-                    <option value="Cp">Capricorn</option>
-                    <option value="Aq">Aquarius</option>
-                    <option value="Pi">Pisces</option>
-                </select>
-                <input type="submit" value="Show Nakshatra" />
-            </form>
-            <div className="output">
-                <div className="number">Number: {state.output1}</div>
-                <div className="nakshtra">Nakshatra: {state.nakshatra}</div>
-                <div className="ruler">Ruler: {state.ruler}</div>
+                    <label htmlFor="zodiac">Zodiac</label>
+                    <select
+                        name="zodiac"
+                        id="zodiac"
+                        value={state.zodiac}
+                        onChange={(e) =>
+                            dispatch({
+                                type: e.target.name,
+                                value: e.target.value,
+                            })
+                        }>
+                        <option value="Ar">Aries</option>
+                        <option value="Ta">Taurus</option>
+                        <option value="Ge">Gemini</option>
+                        <option value="Ca">Cancer</option>
+                        <option value="Le">Leo</option>
+                        <option value="Vi">Virgo</option>
+                        <option value="Li">Libra</option>
+                        <option value="Sc">Scorpio</option>
+                        <option value="Sa">Sagittarius</option>
+                        <option value="Cp">Capricorn</option>
+                        <option value="Aq">Aquarius</option>
+                        <option value="Pi">Pisces</option>
+                    </select>
+                    <input type="submit" value="Show Nakshatra" />
+                </form>
+                {state.output1 ? (
+                    <div className="output">
+                        <div className="number">Number: {state.output1}</div>
+                        <div className="nakshtra">
+                            Nakshatra: {state.nakshatra}
+                        </div>
+                        <div className="ruler">Ruler: {state.ruler}</div>
+                    </div>
+                ) : null}
             </div>
-        </div>
+        </>
     );
 }
 
