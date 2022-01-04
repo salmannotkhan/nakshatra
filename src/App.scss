@@ -1,0 +1,24 @@
+.input-box {
+    form {
+        display: flex;
+        flex-direction: column;
+        input,
+        select {
+            margin: 15px;
+            padding: 10px;
+            border: 1px solid lightsalmon;
+            border-radius: 10px;
+        }
+        input[type="number"] {
+            text-align: right;
+        }
+        input[type="submit"] {
+            align-self: center;
+            width: 50%;
+        }
+    }
+    .output {
+        display: flex;
+        justify-content: space-around;
+    }
+}

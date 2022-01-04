@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { useEffect, useReducer } from "react";
 import table1 from "./table1.json";
 import table2 from "./table2.json";
@@ -77,26 +77,36 @@ function App() {
                     <option value="Moon">Moon</option>
                     <option value="Ascendant">Ascendant</option>
                 </select>
-                <input
-                    type="number"
-                    name="degree"
-                    value={state.degree}
-                    min={0}
-                    max={30}
-                    onChange={(e) =>
-                        dispatch({ type: e.target.name, value: e.target.value })
-                    }
-                />
-                <input
-                    type="number"
-                    name="minutes"
-                    value={state.minutes}
-                    min={0}
-                    max={60}
-                    onChange={(e) =>
-                        dispatch({ type: e.target.name, value: e.target.value })
-                    }
-                />
+                <div className="degree-minutes">
+                    <input
+                        type="number"
+                        name="degree"
+                        value={state.degree}
+                        min={0}
+                        max={30}
+                        onChange={(e) =>
+                            dispatch({
+                                type: e.target.name,
+                                value: e.target.value,
+                            })
+                        }
+                    />
+                    Degree
+                    <input
+                        type="number"
+                        name="minutes"
+                        value={state.minutes}
+                        min={0}
+                        max={60}
+                        onChange={(e) =>
+                            dispatch({
+                                type: e.target.name,
+                                value: e.target.value,
+                            })
+                        }
+                    />
+                    Minutes
+                </div>
                 <select
                     name="zodiac"
                     value={state.zodiac}
@@ -116,11 +126,13 @@ function App() {
                     <option value="Aq">Aquarius</option>
                     <option value="Pi">Pisces</option>
                 </select>
-                <input type="submit" value="show" />
+                <input type="submit" value="Show Nakshatra" />
             </form>
-            {state.output1}
-            {state.ruler}
-            {state.nakshatra}
+            <div className="output">
+                <div className="number">Number: {state.output1}</div>
+                <div className="ruler">Ruler: {state.ruler}</div>
+                <div className="nakshtra">Nakshatra: {state.nakshatra}</div>
+            </div>
         </div>
     );
 }
