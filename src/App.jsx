@@ -20,15 +20,24 @@ const initialState = {
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
     const createRatio = (degree = 30, minutes = 60) => {
-        const degreeRatio = (degree * 10) / 30;
+        const degreeRatio = (degree * 100) / 30;
         const minutesRatio = minutes / 60;
         return degreeRatio + minutesRatio;
     };
 
     useEffect(() => {
-        const { degree, minutes } = state;
-        const currentRatio = createRatio(degree, minutes);
-    }, [state]);
+        const currentRatio = createRatio(state.degree, state.minutes);
+        var planet;
+        if (currentRatio <= createRatio(3, 45)) planet = "Saturn";
+        else if (currentRatio <= createRatio(7, 30)) planet = "Jupiter";
+        else if (currentRatio <= createRatio(11, 15)) planet = "Mars";
+        else if (currentRatio <= createRatio(15, 0)) planet = "Sun";
+        else if (currentRatio <= createRatio(18, 45)) planet = "Venus";
+        else if (currentRatio <= createRatio(22, 30)) planet = "Mercury";
+        else if (currentRatio <= createRatio(26, 15)) planet = "Moon";
+        else if (currentRatio <= createRatio(30, 0)) planet = "Ascendant";
+        dispatch({ type: "planet", value: planet });
+    }, [state.degree, state.minutes]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -130,8 +139,8 @@ function App() {
             </form>
             <div className="output">
                 <div className="number">Number: {state.output1}</div>
-                <div className="ruler">Ruler: {state.ruler}</div>
                 <div className="nakshtra">Nakshatra: {state.nakshatra}</div>
+                <div className="ruler">Ruler: {state.ruler}</div>
             </div>
         </div>
     );
