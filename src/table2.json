@@ -1,0 +1,164 @@
+[
+    {
+        "min": "00 Ar 00",
+        "max": "13 Ar 20",
+        "nakshatra": "Aswini",
+        "ruler": "Ketu"
+    },
+    {
+        "min": "13 Ar 20",
+        "max": "26 Ar 40",
+        "nakshatra": "Bharani",
+        "ruler": "Venus"
+    },
+    {
+        "min": "26 Ar 40",
+        "max": "10 Ta 00",
+        "nakshatra": "Krittika",
+        "ruler": "Sun"
+    },
+    {
+        "min": "10 Ta 00",
+        "max": "23 Ta 20",
+        "nakshatra": "Rohini",
+        "ruler": "Moon"
+    },
+    {
+        "min": "23 Ta 20",
+        "max": "06 Ge 40",
+        "nakshatra": "Mrigashira",
+        "ruler": "Mars"
+    },
+    {
+        "min": "06 Ge 40",
+        "max": "20 Ge 00",
+        "nakshatra": "Ardra",
+        "ruler": "Rahu"
+    },
+    {
+        "min": "20 Ge 00",
+        "max": "03 Ca 20",
+        "nakshatra": "Purnavasu",
+        "ruler": "Jupiter"
+    },
+    {
+        "min": "03 Ca 20",
+        "max": "16 Ca 40",
+        "nakshatra": "Pushyani",
+        "ruler": "Saturn"
+    },
+    {
+        "min": "16 Ca 40",
+        "max": "00 Le 00",
+        "nakshatra": "Aslesha",
+        "ruler": "Mercury"
+    },
+    {
+        "min": "00 Le 00",
+        "max": "13 Le 20",
+        "nakshatra": "Megha",
+        "ruler": "Ketu"
+    },
+    {
+        "min": "13 Le 20",
+        "max": "26 Le 40",
+        "nakshatra": "Purva Phalguni",
+        "ruler": "Venus"
+    },
+    {
+        "min": "26 Le 40",
+        "max": "10 Vi 00",
+        "nakshatra": "Uttara Phalguni",
+        "ruler": "Sun"
+    },
+    {
+        "min": "10 Vi 00",
+        "max": "23 Vi 20",
+        "nakshatra": "Hasta",
+        "ruler": "Moon"
+    },
+    {
+        "min": "23 Vi 20",
+        "max": "06 Li 40",
+        "nakshatra": "Chitra",
+        "ruler": "Mars"
+    },
+    {
+        "min": "06 Li 40",
+        "max": "20 Li 00",
+        "nakshatra": "Swati",
+        "ruler": "Rahu"
+    },
+    {
+        "min": "20 Li 00",
+        "max": "03 Sc 20",
+        "nakshatra": "Vishakha",
+        "ruler": "Jupiter"
+    },
+    {
+        "min": "03 Sc 20",
+        "max": "16 Sc 40",
+        "nakshatra": "Anuradha",
+        "ruler": "Saturn"
+    },
+    {
+        "min": "16 Sc 40",
+        "max": "00 Sa 00",
+        "nakshatra": "Jyeshta",
+        "ruler": "Mercury"
+    },
+    {
+        "min": "00 Sa 00",
+        "max": "13 Sa 20",
+        "nakshatra": "Mula",
+        "ruler": "Ketu"
+    },
+    {
+        "min": "13 Sa 20",
+        "max": "26 Sa 40",
+        "nakshatra": "Purvashadha",
+        "ruler": "Venus"
+    },
+    {
+        "min": "26 Sa 40",
+        "max": "10 Cp 00",
+        "nakshatra": "Uttarashadha",
+        "ruler": "Sun"
+    },
+    {
+        "min": "10 Cp 00",
+        "max": "23 Cp 20",
+        "nakshatra": "Shravana",
+        "ruler": "Moon"
+    },
+    {
+        "min": "23 Cp 20",
+        "max": "06 Aq 40",
+        "nakshatra": "Dhanishta",
+        "ruler": "Mars"
+    },
+    {
+        "min": "06 Aq 40",
+        "max": "20 Aq 00",
+        "nakshatra": "Satabhisha",
+        "ruler": "Rahu"
+    },
+    {
+        "min": "20 Aq 00",
+        "max": "03 Pi 20",
+        "nakshatra": "Purva Bhadra",
+        "ruler": "Jupiter"
+    },
+    {
+        "min": "03 Pi 20",
+        "max": "16 Pi 40",
+        "nakshatra": "Uttara Bhadra",
+        "ruler": "Saturn"
+    },
+    {
+        "min": "16 Pi 40",
+        "max": "00 Ar 00",
+        "nakshatra": "Revati",
+        "ruler": "Mercury"
+    }
+]
