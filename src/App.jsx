@@ -19,9 +19,15 @@ const initialState = {
 
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const createRatio = (degree = 30, minutes = 60) => {
+        const degreeRatio = (degree * 10) / 30;
+        const minutesRatio = minutes / 60;
+        return degreeRatio + minutesRatio;
+    };
 
     useEffect(() => {
         const { degree, minutes } = state;
+        const currentRatio = createRatio(degree, minutes);
     }, [state]);
 
     const handleSubmit = (e) => {
@@ -32,34 +38,26 @@ function App() {
         const output2 = table2.filter((row) => {
             const [minDegree, minZodiac, minMinutes] = row.min.split(" ");
             const [maxDegree, maxZodiac, maxMinutes] = row.max.split(" ");
+            const currentRatio = createRatio(degree, minutes);
+            var minRatio = createRatio(minDegree, minMinutes);
+            var maxRatio = createRatio(maxDegree, maxMinutes);
             if (minZodiac === zodiac) {
                 if (maxZodiac !== zodiac) {
-                    if (0 < degree < maxDegree && 0 < minutes < maxMinutes) {
-                        return true;
-                    }
-                } else {
-                    if (
-                        minDegree < degree &&
-                        degree < maxDegree &&
-                        minMinutes < minutes &&
-                        minutes < maxMinutes
-                    ) {
-                        return true;
-                    }
+                    maxRatio = createRatio();
                 }
             } else if (maxZodiac === zodiac) {
-                if (0 < degree < maxDegree && 0 < minutes < maxMinutes) {
-                    return true;
-                }
+                minRatio = 0;
+                maxRatio = createRatio(maxDegree, maxMinutes);
+            } else {
+                return false;
             }
-            return false;
+            return currentRatio < maxRatio && minRatio <= currentRatio;
         });
-        if (output2) {
+        if (output2.length) {
             const [{ ruler, nakshatra }] = output2;
             dispatch({ type: "ruler", value: ruler });
             dispatch({ type: "nakshatra", value: nakshatra });
         }
-        console.log(output2);
     };
     return (
         <div className="input-box">
