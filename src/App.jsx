@@ -2,6 +2,7 @@ import "./App.scss";
 import { useState, useEffect, useReducer } from "react";
 import table1 from "./table1.json";
 import table2 from "./table2.json";
+import Result from "./Result";
 
 const reducer = (state, action) => {
     if (action.type === "minutes" || action.type === "degree") {
@@ -15,7 +16,7 @@ const initialState = {
     degree: 0,
     minutes: 0,
     zodiac: "Ar",
-    output1: 0,
+    number: 0,
     nakshatra: "",
     ruler: "",
 };
@@ -23,6 +24,7 @@ const initialState = {
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [error, setError] = useState({});
+    const [showResult, setShowResult] = useState(false);
 
     const createRatio = (degree = 30, minutes = 60) => {
         const degreeRatio = (degree * 100) / 30;
@@ -81,8 +83,8 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (error.message) return false;
-        const output1 = table1[state.planet][state.zodiac];
-        dispatch({ type: "output1", value: output1 });
+        const number = table1[state.planet][state.zodiac];
+        dispatch({ type: "number", value: number });
         const { degree, minutes, zodiac } = state;
         const output2 = table2.filter((row) => {
             const [minDegree, minZodiac, minMinutes] = row.min.split(" ");
@@ -106,116 +108,115 @@ function App() {
             const [{ ruler, nakshatra }] = output2;
             dispatch({ type: "ruler", value: ruler });
             dispatch({ type: "nakshatra", value: nakshatra });
+            setShowResult(true);
         }
     };
     return (
         <>
-            <h1>
-                <img src="" alt="" srcSet="" /> Nakshatra
-            </h1>
-            <div className="input-box">
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="planet">Planet</label>
-                    <select
-                        name="planet"
-                        id="planet"
-                        value={state.planet}
-                        onChange={(e) =>
-                            dispatch({
-                                type: e.target.name,
-                                value: e.target.value,
-                            })
-                        }>
-                        <option value="Saturn">Saturn</option>
-                        <option value="Jupiter">Jupiter</option>
-                        <option value="Mars">Mars</option>
-                        <option value="Sun">Sun</option>
-                        <option value="Venus">Venus</option>
-                        <option value="Mercury">Mercury</option>
-                        <option value="Moon">Moon</option>
-                        <option value="Ascendant">Ascendant</option>
-                    </select>
-                    <div className="degree-minutes">
-                        <div className="degree">
-                            <label htmlFor="degree">Degree</label>
-                            <input
-                                type="number"
-                                name="degree"
-                                className={
-                                    error.type === "degree" ? "invalid" : null
-                                }
-                                id="degree"
-                                value={state.degree}
-                                min={0}
-                                max={30}
-                                onChange={(e) =>
-                                    dispatch({
-                                        type: e.target.name,
-                                        value: e.target.value,
-                                    })
-                                }
-                            />
-                        </div>
-                        <div className="minutes">
-                            <label htmlFor="minutes">Minutes</label>
-                            <input
-                                type="number"
-                                name="minutes"
-                                className={
-                                    error.type === "minutes" ? "invalid" : null
-                                }
-                                id="minutes"
-                                value={state.minutes}
-                                min={0}
-                                max={60}
-                                onChange={(e) =>
-                                    dispatch({
-                                        type: e.target.name,
-                                        value: e.target.value,
-                                    })
-                                }
-                            />
-                        </div>
+            <form
+                onSubmit={handleSubmit}
+                className={showResult ? "slide" : null}>
+                <h1>
+                    <img src="" alt="" srcSet="" /> Nakshatra
+                </h1>
+                <label htmlFor="planet">Planet</label>
+                <select
+                    name="planet"
+                    id="planet"
+                    value={state.planet}
+                    onChange={(e) =>
+                        dispatch({
+                            type: e.target.name,
+                            value: e.target.value,
+                        })
+                    }>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Sun">Sun</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Moon">Moon</option>
+                    <option value="Ascendant">Ascendant</option>
+                </select>
+                <div className="degree-minutes">
+                    <div className="degree">
+                        <label htmlFor="degree">Degree</label>
+                        <input
+                            type="number"
+                            name="degree"
+                            className={
+                                error.type === "degree" ? "invalid" : null
+                            }
+                            id="degree"
+                            value={state.degree}
+                            min={0}
+                            max={30}
+                            onChange={(e) =>
+                                dispatch({
+                                    type: e.target.name,
+                                    value: e.target.value,
+                                })
+                            }
+                        />
                     </div>
-                    {error.message ? (
-                        <div className="error">{error.message}</div>
-                    ) : null}
-                    <label htmlFor="zodiac">Zodiac</label>
-                    <select
-                        name="zodiac"
-                        id="zodiac"
-                        value={state.zodiac}
-                        onChange={(e) =>
-                            dispatch({
-                                type: e.target.name,
-                                value: e.target.value,
-                            })
-                        }>
-                        <option value="Ar">Aries</option>
-                        <option value="Ta">Taurus</option>
-                        <option value="Ge">Gemini</option>
-                        <option value="Ca">Cancer</option>
-                        <option value="Le">Leo</option>
-                        <option value="Vi">Virgo</option>
-                        <option value="Li">Libra</option>
-                        <option value="Sc">Scorpio</option>
-                        <option value="Sa">Sagittarius</option>
-                        <option value="Cp">Capricorn</option>
-                        <option value="Aq">Aquarius</option>
-                        <option value="Pi">Pisces</option>
-                    </select>
-                    <input type="submit" value="Show Nakshatra" />
-                </form>
-                {state.output1 ? (
-                    <div className="output">
-                        <div className="number">Number: {state.output1}</div>
-                        <div className="nakshtra">
-                            Nakshatra: {state.nakshatra}
-                        </div>
-                        <div className="ruler">Ruler: {state.ruler}</div>
+                    <div className="minutes">
+                        <label htmlFor="minutes">Minutes</label>
+                        <input
+                            type="number"
+                            name="minutes"
+                            className={
+                                error.type === "minutes" ? "invalid" : null
+                            }
+                            id="minutes"
+                            value={state.minutes}
+                            min={0}
+                            max={60}
+                            onChange={(e) =>
+                                dispatch({
+                                    type: e.target.name,
+                                    value: e.target.value,
+                                })
+                            }
+                        />
                     </div>
+                </div>
+                {error.message ? (
+                    <div className="error">{error.message}</div>
                 ) : null}
-            </div>
+                <label htmlFor="zodiac">Zodiac</label>
+                <select
+                    name="zodiac"
+                    id="zodiac"
+                    value={state.zodiac}
+                    onChange={(e) =>
+                        dispatch({
+                            type: e.target.name,
+                            value: e.target.value,
+                        })
+                    }>
+                    <option value="Ar">Aries</option>
+                    <option value="Ta">Taurus</option>
+                    <option value="Ge">Gemini</option>
+                    <option value="Ca">Cancer</option>
+                    <option value="Le">Leo</option>
+                    <option value="Vi">Virgo</option>
+                    <option value="Li">Libra</option>
+                    <option value="Sc">Scorpio</option>
+                    <option value="Sa">Sagittarius</option>
+                    <option value="Cp">Capricorn</option>
+                    <option value="Aq">Aquarius</option>
+                    <option value="Pi">Pisces</option>
+                </select>
+                <input type="submit" value="Show Nakshatra" />
+            </form>
+            <Result
+                showResult={showResult}
+                number={state.number}
+                nakshatra={state.nakshatra}
+                ruler={state.ruler}
+                setShowResult={setShowResult}
+            />
         </>
     );
 }
